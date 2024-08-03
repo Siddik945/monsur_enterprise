@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munsur Enterprise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <h1 id="title">Munsur Enterprise</h1>
+
+        <div class="calculation" id="submit_calculate">
+            <p>Length <input type="text" class="input" name="" id="" placeholder="Count"></p>
+            <p>Width <input type="text" class="input" name="" id="" placeholder="Count"></p>
+            <p>Height <input type="text" class="input" name="" id="" placeholder="Count"></p>
+            <p><button type="submit" class="input" id="submit">Submit</button></p>
+        </div>
+
+        <div class="input-section" id="input_section">
+            <p>Length <input type="text" class="input" id="lengthFoot" placeholder="Foot"> <input type="text" class="input" id="lengthInche" placeholder="Inches"></p>
+            <p>Width <input type="text" class="input" id="widthFoot" placeholder="Foot"> <input type="text" class="input" id="widthInche" placeholder="Inches"></p>
+            <p>Height <input type="text" class="input" id="heightFoot" placeholder="Foot"> <input type="text" class="input" id="heightInche" placeholder="Inches"></p>
+            <p><button type="submit" class="input" id="button">Calculate</button></p>
+        </div>
+
+        <div id="output-section">
+            <p>Total = <span id="output">00</span> cft</p>
+        </div>
+    </div>
+    <script>
+        function getInput(id){
+            const inputValue=document.getElementById(id).value;
+            const number=parseFloat(inputValue);
+            return number;
+        }
+        
+        document.getElementById('button').addEventListener('click',function(){
+            var output=document.getElementById('output-section');
+            output.style.display='block';
+
+            const length_Foot=getInput('lengthFoot');
+            const width_Foot=getInput('widthFoot');
+            const height_Foot=getInput('heightFoot');
+            const length_Inche=getInput('lengthInche');
+            const width_Inche=getInput('widthInche');
+            const height_Inche=getInput('heightInche');
+            const length_inche_to_feet=length_Inche/12;
+            const width_inche_to_feet=width_Inche/12;
+            const height_inche_to_feet=height_Inche/12;
+
+            const total_length=length_Foot + length_inche_to_feet;
+            const total_width=width_Foot + width_inche_to_feet;
+            const total_hight=height_Foot + height_inche_to_feet;
+            const total_cft=total_length*total_width*total_hight;
+
+            document.getElementById('output').innerText=total_cft;
+        });
+        document.getElementById('submit').addEventListener('click',function(){
+            const calculate=document.getElementById('submit_calculate');
+            calculate.style.display='none';
+            const input_sec=document.getElementById('input_section');
+            input_sec.style.display='block';
+        });
+    </script>
+</body>
+</html>
